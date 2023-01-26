@@ -3,3 +3,4 @@ Coding Temple - ERD and database - Movie Theater Database Creation - Dylan Cutsf
 
 - w5d3_movie_theater_db.pdf contains a copy of my Lucidchart.
 - w5d3_movie_theater_db.sql shows my table creation, inserts, and a few alterations.
+- erd_reasoning.txt explains my reasoning for how things are routed in the database.
