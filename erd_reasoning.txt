@@ -1,0 +1,12 @@
+- "movie_id" is sent to "tickets" so that there would be a way to find info about the movie (like the title, which I added through TABLE ALTER after forgetting it on my chart) that you might want to print on each ticket. I couldn't really think of a need for any other tables to need the info from the movie table, but obviously we could still JOIN or subquery it by routing through tickets.
+
+- "ticket_id" is sent to "payments" because I figured that sometimes there are either discounts like "$5 Tuesday" that decrease the ticket price, or special extras like 3D that increase it. So I figured that having a way to connect back to the information of the specific ticket would help in tracking sales and such.
+
+- "concession_id" is sent to "payments" as well so that you could track the current price of what a customer is buying.
+
+- "customer_id" routes into "payments" also. I figured that way if they were a rewards member or soemthing, there would be a way to assign them an automatic discount, or track the number of points they earned with their purchase (a field I didn't think to add until now, but could be expanded if that was a promotion the theater wanted to start using).
+
+- "payment_id" doesn't currently go anywhere else, because that is essentially where everything else is routing to, since sales is likely what a theater would use a database to track. You'll I made a typo on my Lucidchart and gave all the NUMERIC values in this table (6,5) for precision and scale, so using a TABLE ALTER I was able to change the datatype to NUMERIC(6,2). 
+
+- Other thoughts:
+  Overall I think I would've wanted to add "ticket_cart" and "concession_cart" tables between "payments", "tickets" and "concessions" to make it easier to track the quantity of various items being purchased. As my database sits now, I don't think there would really be a way to save a purchase of more than one concession and one ticket. I think it could still be accomplished by adding multiple ids from each of the foreign keys, but it would probably be cleaner to use a go between, and use the primary key from that as a foreign key in "payments", where it could just pull the total of each cart and then add them together for the "purchase_total".
